@@ -1,7 +1,5 @@
-import tkinter
 import window
 import draw
-import threading
 
 
 newWindow = window.Window("1280x720")
