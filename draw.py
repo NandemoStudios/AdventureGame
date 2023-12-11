@@ -18,17 +18,19 @@ class Engine:
                                                 pawn_list[entry][1],
                                                 pawn_list[entry][2],
                                                 pawn_list[entry][3],
-                                                pawn_list[entry][4])
+                                                pawn_list[entry][4],
+                                                entry)
             if self.id_list[entry] == 2:
                 self.root_window.draw_ellipse(pawn_list[entry][0],
                                               pawn_list[entry][1],
                                               pawn_list[entry][2],
                                               pawn_list[entry][3],
-                                              pawn_list[entry][4])
+                                              pawn_list[entry][4],
+                                              entry)
             if self.id_list[entry] == 3:
                 self.root_window.draw_line(pawn_list[entry][0],
                                            pawn_list[entry][1],
                                            pawn_list[entry][2],
                                            pawn_list[entry][3],
-                                           pawn_list[entry][4])
-
+                                           pawn_list[entry][4],
+                                           entry)
