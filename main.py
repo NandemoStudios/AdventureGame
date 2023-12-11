@@ -8,20 +8,19 @@ import threading
 global shouldLoop
 global Frames
 global FPS
-global renderCache
 
 # TODO - Fix the caching system
 # TODO - Add some randomized movement to the engine
 # TODO - Make the caching system based per pawn and not the entire screen
 
-renderCache = []
-
 targetFramerate = 60
 Frames = 0
 FPS = 0
 
-def CacheRendering():
-    renderCache = pawn_list
+def CacheCurrentRendering():
+    renderCache = open("RenderCache.txt", 'w+')
+    renderCache.write(str(pawn_list))
+    renderCache.close()
 
 
 def UpdateFramerate():
@@ -39,21 +38,20 @@ def IncreaseSize():
 
 
 def RenderLoop():
-    CacheRendering()
+    global pawn_list
+    newEngine.drawLoop(pawn_list)
     while True:
         global Frames
-        global pawn_list
-        global renderCache
-        if pawn_list == renderCache:
+        render_cache = open("renderCache.txt", 'r').read()
+        if str(pawn_list) == str(render_cache):
             Frames += 1
-            print("Render and cache the same")
             time.sleep(1/targetFramerate)
         else:
             newWindow.canvas.delete("all")
             newEngine.drawLoop(pawn_list)
             time.sleep(1 / targetFramerate)
             Frames += 1
-            renderCache = pawn_list
+            CacheCurrentRendering()
             print("Render was cached")
 
 
