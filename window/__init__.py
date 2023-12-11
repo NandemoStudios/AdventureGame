@@ -14,7 +14,7 @@ class Window:
         self.FPSDisplay.pack()
 
     def create_canvas(self):
-        self.canvas = tkinter.Canvas(self.root, height=700, width=1280)
+        self.canvas = tkinter.Canvas(self.root, height=600, width=1280)
         self.canvas.pack()
 
     def draw_ellipse(self, x, y, x2, y2, line_width):
