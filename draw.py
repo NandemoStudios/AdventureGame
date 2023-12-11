@@ -10,7 +10,7 @@ class Engine:
         self.root_window = root_window
 
     def drawLoop(self, pawn_list):
-        for entry in range(0, len(self.pawn_list)):
+        for entry in range(0, len(pawn_list)):
             ''' for each entry in the pawn-list, the game will find the correct ID, and draw it to the screen on set 
             points'''
             if self.id_list[entry] == 1:

@@ -32,26 +32,22 @@ def UpdateFramerate():
 def IncreaseSize():
     pawn_list[1][2] = pawn_list[1][2] + 10
     print(pawn_list[1][2])
-    renderCache = pawn_list
 
 
-def RenderLoop():
-    global Frames
-    global renderCache
+def RenderLoop(pawn_list, renderCache):
     CacheRendering()
     while True:
-        if renderCache == pawn_list:
-            print(pawn_list)
-            print(renderCache)
-            time.sleep(1 / targetFramerate)
+        global Frames
+        if pawn_list == renderCache:
             Frames += 1
+            print("Render and cache the same")
         else:
             newWindow.canvas.delete("all")
             newEngine.drawLoop(pawn_list)
             time.sleep(1 / targetFramerate)
             Frames += 1
             renderCache = pawn_list
-            print("Cached Render")
+            print("Render was cached")
 
 
 newWindow = window.Window("1280x720")
@@ -62,7 +58,7 @@ pawn_list = [20, 20, 20, 20, 5], [20, 200, 200, 20, 5], [50, 50, 100, 100, 5]
 id_list = [1, 2, 3]
 newEngine = draw.Engine(newWindow, pawn_list, id_list)
 
-renderingThread = threading.Thread(target=RenderLoop, daemon=True)
+renderingThread = threading.Thread(target=RenderLoop(pawn_list, renderCache), daemon=True)
 renderingThread.start()
 
 frameRateUpdate = threading.Thread(target=UpdateFramerate, daemon=True)
