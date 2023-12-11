@@ -34,10 +34,12 @@ def IncreaseSize():
     print(pawn_list[1][2])
 
 
-def RenderLoop(pawn_list, renderCache):
+def RenderLoop():
     CacheRendering()
     while True:
         global Frames
+        global pawn_list
+        global renderCache
         if pawn_list == renderCache:
             Frames += 1
             print("Render and cache the same")
@@ -58,7 +60,7 @@ pawn_list = [20, 20, 20, 20, 5], [20, 200, 200, 20, 5], [50, 50, 100, 100, 5]
 id_list = [1, 2, 3]
 newEngine = draw.Engine(newWindow, pawn_list, id_list)
 
-renderingThread = threading.Thread(target=RenderLoop(pawn_list, renderCache), daemon=True)
+renderingThread = threading.Thread(target=RenderLoop, daemon=True)
 renderingThread.start()
 
 frameRateUpdate = threading.Thread(target=UpdateFramerate, daemon=True)
