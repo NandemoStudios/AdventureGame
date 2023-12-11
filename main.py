@@ -43,6 +43,7 @@ def RenderLoop():
         if pawn_list == renderCache:
             Frames += 1
             print("Render and cache the same")
+            time.sleep(1/targetFramerate)
         else:
             newWindow.canvas.delete("all")
             newEngine.drawLoop(pawn_list)
