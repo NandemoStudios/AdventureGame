@@ -10,6 +10,10 @@ global Frames
 global FPS
 global renderCache
 
+# TODO - Fix the caching system
+# TODO - Add some randomized movement to the engine
+# TODO - Make the caching system based per pawn and not the entire screen
+
 renderCache = []
 
 targetFramerate = 60
