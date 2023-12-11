@@ -10,9 +10,11 @@ class Window:
         self.root = tkinter.Tk()
         self.root.geometry(self.geometry)
         self.create_canvas()
+        self.FPSDisplay = tkinter.Label(self.root, text="FPS: 0")
+        self.FPSDisplay.pack()
 
     def create_canvas(self):
-        self.canvas = tkinter.Canvas(self.root, height=720, width=1280)
+        self.canvas = tkinter.Canvas(self.root, height=700, width=1280)
         self.canvas.pack()
 
     def draw_ellipse(self, x, y, x2, y2, line_width):
