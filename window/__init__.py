@@ -31,3 +31,6 @@ class Window:
 
     def Start(self):
         self.root.mainloop()
+
+    def on_closing(self):
+        self.root.destroy()
