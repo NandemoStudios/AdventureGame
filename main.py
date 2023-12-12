@@ -4,6 +4,7 @@ import window
 import draw
 import time
 import threading
+import time
 
 global shouldLoop
 global Frames
@@ -27,10 +28,10 @@ def UpdateFramerate():
     global Frames
     global FPS
     while True:
-        time.sleep(1)
         FPS = Frames
         Frames = 0
         newWindow.FPSDisplay.config(text="FPS: "+str(FPS))
+        time.sleep(1)
 
 def IncreaseSize():
     pawn_list[1][2] = pawn_list[1][2] + 10
@@ -45,15 +46,23 @@ def RenderLoop():
         global Frames
         render_cache = open("renderCache.txt", 'r').read()
         if str(pawn_list) == str(render_cache):
+            start_time = time.time()
             Frames += 1
-            time.sleep(1/targetFramerate)
+            end_time = time.time()
+            remaining_wait = end_time - start_time
+            remaining_wait = ((1 / targetFramerate) - remaining_wait) / 2
+            time.sleep(remaining_wait)
         else:
+            start_time = time.time()
             newWindow.canvas.delete("all")
             newEngine.drawLoop(pawn_list)
-            time.sleep(1 / targetFramerate)
+            end_time = time.time()
+            remaining_wait = end_time-start_time
+            remaining_wait = ((1/targetFramerate)-remaining_wait) / 2
+            time.sleep(remaining_wait)
             Frames += 1
             CacheCurrentRendering()
-            print("Render was cached")
+            print(remaining_wait)
 
 
 newWindow = window.Window("1280x720")
