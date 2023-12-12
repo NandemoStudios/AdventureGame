@@ -38,6 +38,7 @@ def IncreaseSize():
 
 
 def RenderLoop():
+    CacheCurrentRendering()
     global pawn_list
     newEngine.drawLoop(pawn_list)
     while True:
