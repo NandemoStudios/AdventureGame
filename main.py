@@ -12,6 +12,7 @@ global FPS
 # TODO - Fix the caching system
 # TODO - Add some randomized movement to the engine
 # TODO - Make the caching system based per pawn and not the entire screen
+# TODO - Fix the framerate cap, lower end devices cause the capped framerate system to break
 
 targetFramerate = 60
 Frames = 0
